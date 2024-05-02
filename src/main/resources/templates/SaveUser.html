@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Save User Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0; /* Remove default browser margins */
+        }
+
+        .container {
+            display: flex; /* Use flexbox for horizontal centering */
+            justify-content: center; /* Align content horizontally */
+            align-items: center; /* Align content vertically (optional) */
+            min-height: 100vh; /* Set minimum height for full viewport */
+            background-color: #f0f0f0; /* Optional background color */
+        }
+
+        form {
+            width: 400px; /* Set a fixed width for the form */
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px; /* Add rounded corners */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional subtle shadow */
+        }
+
+        h1 {
+            text-align: center; /* Center the heading within the form */
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block; /* Make labels on separate lines */
+            margin-bottom: 5px;
+        }
+
+        input[type="text"] {
+            width: 100%; /* Make input fields fill the form width */
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            box-sizing: border-box; /* Include padding in width calculation */
+        }
+
+        button[type="submit"] {
+            width: 100%; /* Make submit button fill the form width */
+            padding: 10px 20px;
+            background-color: #4CAF50; /* Green color */
+            color: white;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #3e8e41; /* Darker green on hover */
+        }
+
+        #viewDeleteBtn {
+            position: fixed; /* Fix the button to the viewport */
+            top: 30px;  /* Set distance from top edge */
+            right: 40px; /* Set distance from right edge */
+            /* Optional button styles */
+            padding: 10px 20px;
+            background-color: #4CAF50; /* Green color (example) */
+            color: white;
+            border: none;
+            cursor: pointer; /* Indicate clickable action */
+        }
+
+    </style>
+</head>
+<body>
+<div class="container">
+    <form id="saveUser" th:action="@{/saveuser}" th:object="${user}" method="post">
+        <h1>Save User Details</h1>
+        <label for="appKey">Application Key:</label>
+        <input type="text" id="appKey" name="appKey" th:field="*{appKey}" required><br><br>
+        <label for="appName">Application Name:</label>
+        <input type="text" id="appName" name="appName" th:field="*{appName}" required><br><br>
+        <label for="name">App Owner:</label>
+        <input type="text" id="name" name="name" th:field="*{name}" required><br><br>
+        <button type="submit" onclick="showSuccessAlert()">Save</button>
+    </form>
+
+    <button type="button" id="viewDeleteBtn" onclick="window.location.href='/getUser'">View and Delete Users</button>
+
+    <script>
+        function showSuccessAlert() {
+            alert("User added successfully!");
+        }
+    </script>
+
+</div>
+</body>
+</html>
